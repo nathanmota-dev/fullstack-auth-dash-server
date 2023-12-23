@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
+const bycript = require('bcrypt');
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
@@ -20,11 +21,12 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
 
     const email = req.body.email;
     const username = req.body.username;
-    const password = req.body.password;
+    const hashPassword = await bycript.hashSync(req.body.password, 10);
+    const password = hashPassword;
 
     const sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
 
@@ -34,7 +36,7 @@ app.post('/register', (req, res) => {
 
         if (err) {
 
-            console.error('Erro ao executar a consulta SQL:', err);
+            console.error('Erro ao executar a insersão no SQL:', err);
             res.status(500).send({ error: 'Erro interno do servidor' });
         } else {
 
@@ -46,7 +48,8 @@ app.post('/register', (req, res) => {
 app.post('/login', async (req, res) => {
 
     const loginUsername = req.body.username;
-    const loginPassword = req.body.password;
+    const loginHashPassword = await bycript.hashSync(req.body.password, 10);
+    const loginPassword = loginHashPassword;
 
     try {
         const result = await dbQueryAsync("SELECT * FROM users WHERE username = ? && password = ?", [loginUsername, loginPassword]);
