@@ -48,18 +48,27 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
 
     const loginUsername = req.body.username;
-    const loginHashPassword = await bycript.hashSync(req.body.password, 10);
-    const loginPassword = loginHashPassword;
+    const loginPassword = req.body.password;
 
     try {
-        const result = await dbQueryAsync("SELECT * FROM users WHERE username = ? && password = ?", [loginUsername, loginPassword]);
+        const result = await dbQueryAsync("SELECT * FROM users WHERE username = ?", [loginUsername]);
 
         if (result.length > 0) {
 
-            res.send(result);
+            const storedHash = result[0].password;
+
+            const passwordMatch = await bycript.compare(loginPassword, storedHash);
+
+            if (passwordMatch) {
+
+                res.send(result);
+            } else {
+
+                res.send({ message: "Combinação de nome de usuário/senha incorreta" });
+            }
         } else {
 
-            res.send({ message: "Combinação de nome de usuário/senha incorreta" });
+            res.send({ message: "Usuário não encontrado" });
         }
     } catch (error) {
 
