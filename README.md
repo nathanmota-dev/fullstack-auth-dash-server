@@ -157,30 +157,17 @@ BackEnd:
 
 ### :tada: Contributions/Contribuições
 
-<details>
-  <summary markdown="span"><strong>:us: English</strong></summary><br />
-
+:us:
 Contributions are welcome! Feel free to open an issue or submit a pull request.
 
-<br />
-</details>
-
-<details>
-  <summary markdown="span"><strong>:brazil: Português</strong></summary><br />
-
+:brazil:
 Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
 
 ### :copyright: Copyright disclaimer/Aviso de direitos autorais
 
-<details>
-  <summary markdown="span"><strong>:us: English</strong></summary><br />
-
+:us:
 This project is licensed under the MIT License.
 
-<br />
-</details>
-
-<details>
-  <summary markdown="span"><strong>:brazil: Português</strong></summary><br />
+:brazil:
 
 Este projeto está licenciado sob a Licença MIT.
