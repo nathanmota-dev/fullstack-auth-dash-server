@@ -2,7 +2,6 @@ const { ExtractJwt } = require('passport-jwt');
 const JwtStrategy = require('passport-jwt').Strategy;
 const User = require('../../index');
 
-
 const passport = require("passport");
 
 const options = {

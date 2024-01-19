@@ -91,7 +91,6 @@ app.get('/dashboard', passport.authenticate('jwt', { session: false }), (req, re
     res.status(200).send({ message: "Usuário logado" });
 });
 
-
 const dbQueryAsync = (sql, values) => {
 
     return new Promise((resolve, reject) => {
