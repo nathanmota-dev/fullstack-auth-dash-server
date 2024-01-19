@@ -4,10 +4,19 @@ const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
 const bycript = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 const port = process.env.PORT || 3001;
+const checkAuth = require('./src/authentication/authMiddleware'); 0
+require('./src/middleware/passaport');
 
 app.use(express.json());
 app.use(cors());
+app.use(passport.initialize());
+app.use(passport.session())
+app.use(checkAuth);
 
 app.listen(port, () => {
     console.log(`Server rodando na porta ${port}`);
@@ -61,10 +70,11 @@ app.post('/login', async (req, res) => {
 
             if (passwordMatch) {
 
-                res.send(result);
+                const token = jwt.sign({ id: result[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' })
+                res.json({ token: token, user: result[0] });
             } else {
 
-                res.send({ message: "Combinação de nome de usuário/senha incorreta" });
+                res.json({ message: "Combinação de nome de usuário/senha incorreta" });
             }
         } else {
 
@@ -76,6 +86,11 @@ app.post('/login', async (req, res) => {
         res.status(500).send({ error: 'Erro interno do servidor' });
     }
 });
+
+app.get('/dashboard', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.status(200).send({ message: "Usuário logado" });
+});
+
 
 const dbQueryAsync = (sql, values) => {
 
