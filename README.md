@@ -1,6 +1,6 @@
 # :purse: FullStack DashBoard :seedling:
 
-![desktop preview](assets/capture.JPG)
+![desktop preview](src/assets/capture.JPG)
 
 ## :page_with_curl: About/Sobre
 
@@ -81,6 +81,8 @@ FrontEnd:
 * React.js
 * React Icons (icon library)
 * SCSS
+* React Hook Form
+* Yup.js
 
 BackEnd:
 
@@ -155,19 +157,38 @@ BackEnd:
 
 5. Abra seu navegador em: [http://localhost:5173/](http://localhost:5173/) para visualizar o projeto em execução.
 
+<br />
+</details>
+
 ### :tada: Contributions/Contribuições
 
-:us:
+<details>
+  <summary markdown="span"><strong>:us: English</strong></summary><br />
+
 Contributions are welcome! Feel free to open an issue or submit a pull request.
 
-:brazil:
+<br />
+</details>
+
+<details>
+  <summary markdown="span"><strong>:brazil: Português</strong></summary><br />
+
 Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar um pull request.
+
+<br />
+</details>
 
 ### :copyright: Copyright disclaimer/Aviso de direitos autorais
 
-:us:
+<details>
+  <summary markdown="span"><strong>:us: English</strong></summary><br />
+
 This project is licensed under the MIT License.
 
-:brazil:
+<br />
+</details>
+
+<details>
+  <summary markdown="span"><strong>:brazil: Português</strong></summary><br />
 
 Este projeto está licenciado sob a Licença MIT.
