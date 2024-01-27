@@ -1,3 +1,5 @@
+const passport = require('passport');
+
 module.exports = function checkAuthentication(req, res, next) {
 
     passport.authenticate('jwt', { session: false }, async (error, token) => {
@@ -17,6 +19,6 @@ module.exports = function checkAuthentication(req, res, next) {
 
                 next(error);
             }
-        }        
+        }
     })(req, res, next);
 };

@@ -6,17 +6,15 @@ const cors = require('cors');
 const bycript = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
 const port = process.env.PORT || 3001;
-const checkAuth = require('./src/authentication/authMiddleware'); 0
+//const checkAuth = require('./src/authentication/authMiddleware'); 
 require('./src/middleware/passaport');
 
 app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
-app.use(passport.session())
-app.use(checkAuth);
+//app.use(passport.session())
+//app.use(checkAuth);
 
 app.listen(port, () => {
     console.log(`Server rodando na porta ${port}`);
@@ -54,7 +52,7 @@ app.post('/register', async (req, res) => {
     });
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login', async (req, res) => {app
 
     const loginUsername = req.body.username;
     const loginPassword = req.body.password;
