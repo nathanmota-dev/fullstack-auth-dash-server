@@ -1,6 +1,6 @@
 const { ExtractJwt } = require('passport-jwt');
 const JwtStrategy = require('passport-jwt').Strategy;
-const User = require('../../index');
+const { findUserById } = require('../database/database');
 
 const passport = require("passport");
 
@@ -11,14 +11,14 @@ const options = {
 
 passport.use(new JwtStrategy(options, (payload, done) => {
 
-    User.findById(payload.id)
-        .then(user => {
-
-            if (user) {
-                return done(null, user);
-            } else {
-                return done(null, false);
-            }
-        })
-        .catch(err => done(err, false));
+    findUserById(payload.id, (err, user) => {
+        if (err) {
+            return done(err, false);
+        }
+        if (user) {
+            return done(null, user);
+        } else {
+            return done(null, false);
+        }
+    });
 }));

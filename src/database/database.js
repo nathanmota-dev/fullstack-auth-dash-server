@@ -7,4 +7,18 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-module.exports = db;
+const findUserById = (id, callback) => {
+
+    const sql = "SELECT * FROM users WHERE id = ?";
+    db.query(sql, [id], (error, results) => {
+        if (error) {
+            return callback(error);
+        } if (results.length > 0) {
+            return callback(null, results[0]);
+        } else {
+            return callback(null);
+        }
+    });
+};
+
+module.exports = { db, findUserById };

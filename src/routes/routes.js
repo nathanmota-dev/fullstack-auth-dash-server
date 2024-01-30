@@ -3,7 +3,7 @@ const router = express.Router();
 const bycript = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const db = require('../database/database');
+const { db } = require('../database/database');
 
 require('../middleware/passaport');
 
