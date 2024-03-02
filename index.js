@@ -12,9 +12,7 @@ require('./src/middleware/passaport');
 
 app.use(express.json());
 app.use(cors());
-app.use(fetch);
 app.use(passport.initialize());
-
 app.use(routes);
 
 app.get('/dashboard', (req, res, next) => {
